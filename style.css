@@ -1,0 +1,67 @@
+
+$radius: .35rem;
+$border-width: 2px;
+$color-bg: white;
+$offset: .5rem;
+$transition: .3s;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  background: #88ABFF;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 100vh;
+}
+
+button {
+  font-weight: 600;
+  border: solid 2px black;
+  outline: 0;
+  padding: 1rem 4rem;
+  font-size: 1.5rem;
+  letter-spacing: .08rem;
+  background-color: white;
+  border-radius: .35rem;
+  position: relative;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    
+    background-color: pink;
+    z-index: -1;
+    border-radius: $radius;
+    border: solid $border-width $color;
+    transition: all $transition ease-in-out;
+    border: 0;
+    box-shadow: 0px 0px 0px $border-width $color;
+    top: .5rem;
+    left: .5rem;
+  }
+
+  &:hover {
+    &::after {
+      top: -#{.5rem};
+      left: -#{.5rem};
+      width: calc(100% + #{.5rem} * 2);
+      height: calc(100% + #{.5rem} * 2);
+    }
+  }
+}
+
+::selection{
+  color: #fff;
+  background: #618cf8;
+}
