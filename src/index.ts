@@ -14,18 +14,20 @@ const users: { [key: string]: { firstName: string; email: string; password: stri
 const posts: { [key: string]: { category: string; content: string } } = {};
 
 // Middleware to validate JWT
+// Middleware to validate JWT
 const validateToken = (req: any, res: any, next: any) => {
-  const token = req.header('x-auth-token');
-  if (!token) return res.status(401).json({ msg: 'Authorization denied' });
-
-  try {
-    const decoded = jwt.verify(token, 'secretkey');
-    req.user = decoded.user;
-    next();
-  } catch (e) {
-    res.status(400).json({ msg: 'Token is not valid' });
-  }
+    const token = req.header('x-auth-token');
+    if (!token) return res.status(401).json({ msg: 'Authorization denied' });
+  
+    try {
+      const decoded: any = jwt.verify(token, 'secretkey'); // Explicitly define the type here
+      req.user = decoded.user;
+      next();
+    } catch (e) {
+      res.status(400).json({ msg: 'Token is not valid' });
+    }
 };
+  
 
 // Register user
 app.post(
